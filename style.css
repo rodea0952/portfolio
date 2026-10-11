@@ -1,0 +1,824 @@
+/* ===== 色・フォントの設定 ===== */
+:root {
+  --bg: #f7f9fa;
+  --bg-elev: #ffffff;
+  --border: #e3e8ed;
+  --text: #1a2129;
+  --text-sub: #5b6875;
+  --accent-rgb: 28, 115, 131; /* 白背景でも読める濃いめのシアン #1c7383。色を変えるときはここだけ */
+  --accent: rgb(var(--accent-rgb));
+  --accent-dim: rgba(var(--accent-rgb), 0.1);
+  --on-accent: #ffffff; /* アクセント色の上に載せる文字色 */
+  --header-bg: rgba(247, 249, 250, 0.85);
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 4px 16px rgba(16, 24, 40, 0.04);
+
+  --font-en: "Inter", "Noto Sans JP", system-ui, sans-serif;
+  --font-body: "Noto Sans JP", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* ===== ベース ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px; /* 固定ヘッダーの分 */
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.4;
+}
+
+/* ===== ヘッダー ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 32px;
+  background: var(--header-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: var(--font-en);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-en);
+  font-size: 14px;
+}
+
+.nav a {
+  padding: 6px 12px;
+  color: var(--text-sub);
+  border-radius: 999px;
+  transition: color 0.2s ease;
+}
+
+.nav a:hover {
+  color: var(--text);
+}
+
+.nav .nav-cta {
+  color: var(--on-accent);
+  background: var(--accent);
+  font-weight: 600;
+}
+
+.nav .nav-cta:hover {
+  color: var(--on-accent);
+  opacity: 0.85;
+}
+
+/* 今いるページ */
+.nav a[aria-current="page"]:not(.nav-cta) {
+  color: var(--accent);
+}
+
+.nav .nav-cta[aria-current="page"] {
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--accent);
+}
+
+/* カード類に共通の影（白背景で輪郭を出すため） */
+.card,
+.entry,
+.highlight,
+.skill-group,
+.contact-item {
+  box-shadow: var(--shadow);
+}
+
+/* ===== レイアウト ===== */
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.section {
+  padding: 96px 0;
+}
+
+.section-tight {
+  padding-top: 0;
+}
+
+.label {
+  margin: 0 0 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+/* ===== 各ページの見出し ===== */
+.page-head {
+  position: relative;
+  padding: 96px 0 56px;
+}
+
+.page-head h1 {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 44px);
+  font-weight: 900;
+}
+
+/* ページ内の項目へのリンク */
+.subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.subnav a {
+  padding: 6px 16px;
+  font-size: 14px;
+  color: var(--text-sub);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.subnav a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ページ内の各項目 */
+.block {
+  padding: 56px 0;
+  border-top: 1px solid var(--border);
+}
+
+.block:last-child {
+  padding-bottom: 96px;
+}
+
+.block-head {
+  margin-bottom: 28px;
+}
+
+.block-head h2 {
+  margin: 0;
+  font-size: clamp(22px, 3.5vw, 28px);
+  font-weight: 900;
+}
+
+/* ===== ヒーロー ===== */
+.hero {
+  position: relative;
+  padding: 96px 0 72px;
+}
+
+.hero-glow {
+  position: absolute;
+  top: -40px;
+  left: -10%;
+  z-index: -1;
+  width: 70%;
+  height: 420px;
+  background: radial-gradient(ellipse at center, rgba(var(--accent-rgb), 0.08), transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--accent);
+}
+
+/* トップのヒーロー（名前・要約） */
+.hero-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 16px;
+  margin: 0 0 20px;
+  font-size: clamp(28px, 4.5vw, 40px);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.name-en {
+  font-family: var(--font-en);
+  font-size: 0.45em;
+  font-weight: 600;
+  color: var(--text-sub);
+}
+
+.summary {
+  max-width: 34em;
+  margin: 0;
+  font-size: 17px;
+}
+
+/* ===== highlights ===== */
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 24px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.highlight:hover {
+  border-color: rgba(var(--accent-rgb), 0.5);
+  transform: translateY(-4px);
+}
+
+.highlight-title {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.highlight-desc {
+  flex: 1;
+  color: var(--text-sub);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* カードに添える受賞歴 */
+.highlight-award {
+  position: relative;
+  padding-left: 1.2em;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.7;
+  color: var(--accent);
+}
+
+.highlight-award::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+}
+
+.highlight-more {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ===== about ===== */
+
+.about-body {
+  max-width: 44em;
+}
+
+.about-body > p {
+  margin: 0;
+}
+
+.about-body > p + p {
+  margin-top: 1em;
+}
+
+.timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-left: 2px solid var(--border);
+}
+
+.timeline li {
+  position: relative;
+  padding: 0 0 20px 24px;
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: -6px;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.timeline time {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+.timeline h3 {
+  margin: 2px 0 0;
+  font-size: 16px;
+}
+
+.timeline p {
+  margin: 0;
+  color: var(--text-sub);
+  font-size: 14px;
+}
+
+/* ===== projects ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  overflow: hidden;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  border-color: rgba(var(--accent-rgb), 0.5);
+  transform: translateY(-4px);
+}
+
+.card-body {
+  padding: 20px 22px 22px;
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-en);
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.card-desc {
+  margin: 0 0 16px;
+  color: var(--text-sub);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.card-links {
+  display: flex;
+  gap: 16px;
+  margin: 16px 0 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.card-links a {
+  color: var(--accent);
+}
+
+.card-links a:hover {
+  text-decoration: underline;
+}
+
+/* 研究など、横幅いっぱいで見せるカード */
+.card-wide {
+  grid-column: 1 / -1;
+}
+
+.card-wide:hover {
+  transform: none;
+}
+
+.card-wide .card-body {
+  padding: 28px 32px 32px;
+}
+
+.card-kind {
+  margin: 0 0 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+}
+
+/* タグ（制作物・スキル共通） */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 3px 12px;
+  font-family: var(--font-en);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--accent-dim);
+  border-radius: 999px;
+}
+
+/* ===== skills ===== */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.skill-group {
+  padding: 24px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.skill-group h3 {
+  margin: 0 0 14px;
+  font-size: 15px;
+}
+
+/* ===== 技術記事（ブログごとのスクロール枠） ===== */
+.feeds {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.feed {
+  overflow: hidden;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.feed-head {
+  padding: 18px 22px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.feed-head h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.feed-meta {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+.feed-meta a {
+  color: var(--accent);
+}
+
+.feed-meta a:hover {
+  text-decoration: underline;
+}
+
+/* 枠の中だけをスクロールさせる */
+.feed-list {
+  max-height: 420px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+}
+
+.feed-list li + li {
+  border-top: 1px solid var(--border);
+}
+
+.feed-list a {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 22px;
+  transition: background-color 0.2s ease;
+}
+
+.feed-list a:hover {
+  background: var(--accent-dim);
+}
+
+/* サムネイル付きの行（左にサムネ、右に日付とタイトル） */
+.feed-list.has-thumbs a {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.feed-thumb {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.feed-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.feed-list time {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+.post-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+/* ===== achievements ===== */
+.achievements {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 日付・バッジ・本文の3列。バッジの幅が違っても本文の開始位置をそろえる */
+.achievements li {
+  display: grid;
+  grid-template-columns: 64px 96px 1fr;
+  align-items: baseline;
+  gap: 4px 16px;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.achievements .badge {
+  justify-self: start;
+}
+
+.achievements time {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+.badge {
+  padding: 1px 10px;
+  font-size: 12px;
+  color: var(--accent);
+  border: 1px solid rgba(var(--accent-rgb), 0.4);
+  border-radius: 999px;
+}
+
+.achievement-title {
+  font-weight: 700;
+}
+
+/* タイトルの下に添える著者・掲載先など */
+.achievement-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.achievement-meta {
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+.achievement-meta strong {
+  color: var(--text);
+}
+
+.achievement-award {
+  margin: 2px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.achievement-award::before {
+  content: "★ ";
+}
+
+.achievement-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 2px;
+  font-size: 12px;
+}
+
+/* 控えめに見せ、マウスを乗せたときだけアクセント色にする */
+.achievement-links a {
+  color: var(--text-sub);
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
+}
+
+.achievement-links a:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+
+/* ===== contact ===== */
+.contact-list {
+  display: grid;
+  gap: 16px;
+  max-width: 560px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.contact-item:hover {
+  border-color: rgba(var(--accent-rgb), 0.5);
+}
+
+.contact-name {
+  font-family: var(--font-en);
+  font-weight: 800;
+}
+
+.contact-value {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+/* ===== トップの各ページへの入口 ===== */
+.entries {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.entry:hover {
+  border-color: rgba(var(--accent-rgb), 0.5);
+  transform: translateY(-4px);
+}
+
+.entry-title {
+  margin: 4px 0;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.entry-title::after {
+  content: " →";
+  color: var(--accent);
+}
+
+/* ===== フッター ===== */
+.site-footer {
+  padding: 32px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* ===== スマホ対応 ===== */
+@media (max-width: 720px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px 16px;
+  }
+
+  /* スマホではナビを横スクロールにする */
+  .nav {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .nav a {
+    white-space: nowrap;
+  }
+
+  html {
+    scroll-padding-top: 120px;
+  }
+
+  .page-head {
+    padding: 56px 0 40px;
+  }
+
+  .block {
+    padding: 40px 0;
+  }
+
+  .feeds {
+    grid-template-columns: 1fr;
+  }
+
+  .feed-list {
+    max-height: 360px;
+  }
+
+  .feed-list.has-thumbs a {
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  /* スマホでは日付とバッジを1行目、本文を2行目に */
+  .achievements li {
+    grid-template-columns: auto 1fr;
+  }
+
+  .achievement-body {
+    grid-column: 1 / -1;
+  }
+
+  main {
+    padding: 0 16px;
+  }
+
+  .hero {
+    padding: 72px 0 64px;
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+
+  .skills {
+    grid-template-columns: 1fr;
+  }
+
+  .card-wide .card-body {
+    padding: 20px 22px 22px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .entry,
+  .highlight {
+    transition: none;
+  }
+}

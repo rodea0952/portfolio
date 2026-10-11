@@ -2,9 +2,91 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>はじめてのページ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ryuto Hosokawa | Portfolio</title>
+  <meta name="description" content="機械学習エンジニア 細川 竜聡（Ryuto Hosokawa）のポートフォリオ。自己紹介・スキル・制作物・技術記事をまとめています。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Hello, GitHub Pages!</h1>
+  <header class="site-header">
+    <a class="logo" href="index.html">Ryuto Hosokawa</a>
+    <nav class="nav">
+      <a href="about.html">About</a>
+      <a href="works.html">Works</a>
+      <a href="contact.html" class="nav-cta">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <p class="eyebrow">Machine Learning Engineer / Bioinformatician</p>
+
+      <!-- 1. 誰？ -->
+      <h1 class="hero-name">細川 竜聡<span class="name-en">Ryuto Hosokawa</span></h1>
+
+      <!-- 2. 何ができる？（事実の一文） -->
+      <p class="summary">
+        バイオインフォマティクスの分野でオミックスデータの解析と予測モデルの開発に取り組んできました。その経験を活かし、現在は機械学習エンジニアとして働いています。
+      </p>
+    </section>
+
+    <!-- 4. 本当にできる？（代表的な実績・制作物を 2〜3 個） -->
+    <section class="block">
+      <div class="block-head">
+        <p class="label">Highlights</p>
+        <h2>代表的な実績</h2>
+      </div>
+      <div class="highlights">
+        <a class="highlight" href="works.html#achievements">
+          <span class="badge">研究</span>
+          <span class="highlight-title">新しい遺伝子はどこから生まれるのか</span>
+          <span class="highlight-desc">約 3,000 件の実験データを統合する解析パイプラインを構築し、数万の新規遺伝子候補を特定。</span>
+          <span class="highlight-award">日本遺伝学会 Young Best Poster賞<br>北海道大学 三上奨学賞</span>
+          <span class="highlight-more">学会発表・受賞 →</span>
+        </a>
+        <a class="highlight" href="works.html#articles">
+          <span class="badge">実務</span>
+          <span class="highlight-title">アメリエフで約 3 年の解析・開発</span>
+          <span class="highlight-desc">オミックスデータの解析と予測モデルの開発に従事。機械学習の記事を含む技術ブログを 19 本執筆。</span>
+          <span class="highlight-more">詳しく →</span>
+        </a>
+        <a class="highlight" href="works.html#achievements">
+          <span class="badge">競プロ</span>
+          <span class="highlight-title">AtCoder 青色（最高レート 1635）</span>
+          <span class="highlight-desc">青色は上位約 5% 相当。レーティング対象のコンテストに 66 回参加。</span>
+          <span class="highlight-more">詳しく →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <p class="label">Explore</p>
+        <h2>もっと知る</h2>
+      </div>
+      <div class="entries">
+        <a class="entry" href="about.html">
+          <span class="label">01 — About</span>
+          <span class="entry-title">自己紹介とスキル</span>
+        </a>
+        <a class="entry" href="works.html">
+          <span class="label">02 — Works</span>
+          <span class="entry-title">実績とアウトプット</span>
+        </a>
+        <a class="entry" href="contact.html">
+          <span class="label">03 — Contact</span>
+          <span class="entry-title">お問い合わせ</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Ryuto Hosokawa</p>
+  </footer>
 </body>
 </html>
